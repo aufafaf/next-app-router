@@ -6,7 +6,7 @@ export default function AdminProductsPage(){
 
     const [status, setStatus] = useState("")
     async function handleRevalidate(){
-        const res = await fetch("http://localhost:3000/api/revalidate?tag=products&secret=aufa123", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/revalidate?tag=products&secret=aufa123`, {
             method: "POST",
         });
 

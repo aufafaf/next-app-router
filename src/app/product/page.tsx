@@ -1,6 +1,9 @@
+"use client"
+
 import { getData } from "@/services/product";
 import Image from "next/image";
 import Link from "next/link";
+import useSWR from "swr";
 
 type ProductPage = {params : {slug: string[]}}
 type Product = {
@@ -10,15 +13,24 @@ type Product = {
     price: number;
 };
 
-export default async function ProductPage(props : ProductPage){
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
+
+export default function ProductPage(props : ProductPage){
     const {params} = props;
-    const products = await getData("http://localhost:3000/api/product");
+
+    // const products = await getData();
+
+    const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/product`, fetcher)
+
+    const products = {
+        data: data?.data,
+    }
 
     return (
         <div className="grid grid-cols-4 mt-5 place-items-center">
             {/* <h1> {params.slug ? "Detail Product Page" : "Product Detail"}</h1> */}
-            {products.data.length > 0 && 
-                products.data.map((product: Product) => (
+            {products.data?.length > 0 && 
+                products.data?.map((product: Product) => (
                     <Link href={`/product/detail/${product.id}`} key={product.id} className="h-auto w-11/12 max-w-sm bg-gray-800 border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 my-2">
                             <Image className="p-6 rounded-t-lg object-cover h-75 w-full" src={product.image} alt="product image" width={500} height={500}/>
                         <div className="px-5 pb-5">
