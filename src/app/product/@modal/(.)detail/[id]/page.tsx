@@ -1,6 +1,6 @@
 "use client"
 
-import { getData } from "@/services/product";
+// import { getData } from "@/services/product";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import useSWR from "swr";
@@ -11,7 +11,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 export default function DetailProductPage(props: any){
     const {params} = props;
     // const products = await getData(`${process.env.NEXT_PUBLIC_API_URL}/api/product/?id=` + params.id);
-    const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/product/?id=` + params.id, fetcher);
+    const { data, error, isLoading} = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/product/?id=${params.id}`, fetcher);
 
     const products = {
         data: data?.data,

@@ -1,11 +1,11 @@
 "use client"
 
-import { getData } from "@/services/product";
+// import { getData } from "@/services/product";
 import Image from "next/image";
 import Link from "next/link";
 import useSWR from "swr";
 
-type ProductPage = {params : {slug: string[]}}
+// type ProductPage = {params : {slug: string[]}}
 type Product = {
     id: number;
     image: string;
@@ -15,12 +15,12 @@ type Product = {
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-export default function ProductPage(props : ProductPage){
-    const {params} = props;
+export default function ProductPage(){
+    // const {params} = props;
 
     // const products = await getData();
 
-    const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/product`, fetcher)
+    const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/product`, fetcher)
 
     const products = {
         data: data?.data,
