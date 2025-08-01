@@ -2,24 +2,23 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000',
+    process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"
   ),
   title: "Home - AUFA ANGGARA",
   description: "Belajar NextJs",
   authors: [
     {
       name: "Aufa",
-      url: '',
-    }
+      url: "",
+    },
   ],
   icons: {
     icon: "/icon.png",
   },
   openGraph: {
     title: "Home - AUFA ANGGARA",
-  }
-  
-}
+  },
+};
 
 export default function Home() {
   // throw new Error('Something went wrong!!!');

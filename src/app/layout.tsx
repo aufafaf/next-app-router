@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -16,17 +16,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const disableNavbar = ["/login", "/register"]
+const disableNavbar = ["/login", "/register"];
 
-export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
-
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   const pathname = usePathname();
-  
+
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <SessionProvider>
-          {!disableNavbar.includes(pathname) && <Navbar/>}
+          {!disableNavbar.includes(pathname) && <Navbar />}
           {children}
         </SessionProvider>
       </body>

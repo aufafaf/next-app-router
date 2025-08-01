@@ -12,11 +12,11 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
-      rules: {
-          // Menonaktifkan aturan yang melarang penggunaan 'any'
-          "@typescript-eslint/no-explicit-any": "off" 
-      }
-  }
+    rules: {
+      // Menonaktifkan aturan yang melarang penggunaan 'any'
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
 ];
 
 export default eslintConfig;
